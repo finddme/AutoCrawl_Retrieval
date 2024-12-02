@@ -15,7 +15,7 @@ class AutoWebCrawler:
         self.visited_urls = set()
         self.results = []
         self.verbose = verbose
-        self.download_dir = f"{self.domain}_{download_dir}"
+        self.download_dir = f"./sample_result/{self.domain}_{download_dir}"
         self.file_extensions = {
             'images': ['.jpg', '.jpeg', '.png', '.webp'],
             'documents': ['.pdf', '.doc', '.docx', '.xlsx', '.xls', '.ppt', '.pptx'],
@@ -79,6 +79,8 @@ class AutoWebCrawler:
                     with open(save_path, 'wb') as f:
                         f.write(content)
                     
+                    self.save_results()
+
                     self.logger.info(f"Downloaded: {filename}")
                     return {
                         'url': url,
@@ -171,7 +173,8 @@ class AutoWebCrawler:
                     await asyncio.sleep(1)
 
     def save_results(self, filename='crawler_results.json'):
-        with open(filename, 'w', encoding='utf-8') as f:
+        directory=os.path.join(self.download_dir, filename)
+        with open(directory, 'w', encoding='utf-8') as f:
             json.dump({
                 'base_url': self.base_url,
                 'total_pages_crawled': len(self.visited_urls),
@@ -182,8 +185,8 @@ class AutoWebCrawler:
 async def main():
     base_url = "https://finance.naver.com/"
     crawler = AutoWebCrawler(base_url, verbose=True, download_dir="site_downloads")
-    await crawler.crawl(max_pages=10)
-    crawler.save_results()
+    await crawler.crawl(max_pages=50)
+    # crawler.save_results()
 
 if __name__ == "__main__":
     asyncio.run(main())
