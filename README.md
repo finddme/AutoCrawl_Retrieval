@@ -4,7 +4,7 @@
 
 - input: 메인 page url
   - 탭 및 하위 페이지 자동 crawling
-  - ~text 정보 수집~ -> text 정보 수집 + 각종 자료 다운로드(pdf, docx, hwp, image, video, excel ...)
+  - ~~text 정보 수집~~ -> text 정보 수집 + 각종 자료 다운로드(pdf, docx, hwp, image, video, excel ...)
   - DB 저장 -> 다운로드된 자료들에 대한 추가 처리 파이프라인 개발 필요
     - video: [https://github.com/finddme/Video_Retrieval](https://github.com/finddme/Video_Retrieval)의 데이터 처리 방식 적용
     - image: [https://github.com/finddme/Video_Retrieval](https://github.com/finddme/Video_Retrieval)의 영상 캡쳐 이미지 처리 방식 적용
